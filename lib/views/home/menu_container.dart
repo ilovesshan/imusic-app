@@ -10,6 +10,6 @@ class MenuContainer extends StatefulWidget {
 class _MenuContainerState extends State<MenuContainer> {
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(body: Text("首页界面"));
+    return const Scaffold(body: Center(child: Text("首页界面")));
   }
 }
