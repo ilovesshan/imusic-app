@@ -16,9 +16,6 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
 
   @override
   void initState() {
-    // 初始化 SharedPreferences
-    SharedPreferencesUtil.initSharedPreferences();
-
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
   }

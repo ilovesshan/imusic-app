@@ -21,7 +21,7 @@ class _ApplicationState extends State<Application> {
       // APP主题配色方案
       theme: AppInitialize.appTheme(),
       // 路由解决方案(也可自行配置)
-      initialRoute: YFRouter.login,
+      initialRoute: YFRouter.splash,
       getPages: YFRouter.routes(),
       builder: (_, c) {
         // android状态栏为透明沉浸式
