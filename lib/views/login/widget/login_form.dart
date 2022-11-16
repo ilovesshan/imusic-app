@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:common_utils/common_utils.dart';
+import 'package:imusic_app/api/user.dart';
+import 'package:imusic_app/model/user_login_model.dart';
 import 'package:imusic_app/router/yf_router.dart';
 
 class LoginForm extends StatefulWidget {
@@ -39,14 +41,18 @@ class _LoginFormState extends State<LoginForm> {
 
             const SizedBox(height: 80),
             FractionallySizedBox(widthFactor: 1, child: ElevatedButton(child: const Text("登录"),
-                onPressed: () {
+                onPressed: () async {
                   String username = _usernameController.text;
                   String password = _passwordController.text;
                      if(TextUtils.isValid(username) || TextUtils.isValid(password)){
                        EasyLoading.showToast("请输入正确的用户名或者密码");
                         return;
                      }else{
-                       Get.offAndToNamed(YFRouter.menuContainer);
+                      final UserLoginModel loginModel = await UserRequest.login({"username":username,"password":password});
+                      SharedPreferencesDao.saveId("${loginModel.id}");
+                      SharedPreferencesDao.saveUsername("${loginModel.username}");
+                      SharedPreferencesDao.saveToken("${loginModel.token}");
+                      Get.offAndToNamed(YFRouter.menuContainer);
                      }
                   }
               )),
