@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:http/http.dart' as http;
-import 'package:imusic_app/utils/log_util.dart';
 
 Future<String> getData() async {
   final response = await http.get(
