@@ -103,27 +103,9 @@ android {
         implementation 'com.amap.api:search:5.0.0'
         implementation('com.amap.api:3dmap:8.1.0')
 
-
         // 极光推送依赖配置
         implementation 'cn.jiguang.sdk:jcore:3.3.0'  // 此处以JCore 3.3.0 版本为例。
         implementation 'cn.jiguang.sdk:jpush:4.7.2'  // 此处以JPush 4.7.2 版本为例
-
-        // 接入华为厂商
-        // implementation 'com.huawei.hms:push:6.3.0.304'
-        // implementation 'cn.jiguang.sdk.plugin:huawei:4.7.2'// 极光厂商插件版本与接入 JPush 版本保持一致，下同
-        // 接入荣耀厂商
-        // implementation 'cn.jiguang.sdk.plugin:honor:4.7.2'
-        // 接入 FCM 厂商
-        // implementation 'com.google.firebase:firebase-messaging:23.0.5'
-        // implementation 'cn.jiguang.sdk.plugin:fcm:4.7.2'
-        // 接入魅族厂商
-        // implementation 'cn.jiguang.sdk.plugin:meizu:4.7.2'
-        // 接入 VIVO 厂商
-        // implementation 'cn.jiguang.sdk.plugin:vivo:4.7.2'
-        // 接入 OPPO 厂商
-        // implementation 'cn.jiguang.sdk.plugin:oppo:4.7.2'
-        // 接入小米厂商
-        // implementation 'cn.jiguang.sdk.plugin:xiaomi:4.7.2'
     }
 }
 
