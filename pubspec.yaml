@@ -12,9 +12,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-
-  # 网络请求
-  http: ^0.13.5
+  # 导入工具包
+  common_utils:
+    path: ./common_utils
 
   cupertino_icons: ^1.0.2
 
