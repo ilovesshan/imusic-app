@@ -31,7 +31,8 @@ class HttpHelper {
     // 添加拦截器
     _dio.interceptors.add(InterceptorsWrapper(
       onRequest: (RequestOptions options, RequestInterceptorHandler handler) async {
-
+        EasyLoading.instance.maskType = EasyLoadingMaskType.black;
+        EasyLoading.show(status: "加载中...");
         /// 由于HttpHelper是单例模式   baseUrl会被切换 每次请求时更新一下
         options.baseUrl = HttpHelperConfig.serviceList[HttpHelperConfig.selectIndex];
 
@@ -57,7 +58,6 @@ class HttpHelper {
 
         debugPrint("***************************请求拦截***************************");
         debugPrint('请求地址: ${  options.baseUrl + options.path}');
-        // debugPrint('请求地址: ${options.path}');
         debugPrint('请求方式: ${options.method}');
         debugPrint('请求参数(Parameters): ${options.queryParameters.toString()}');
         debugPrint('请求参数(data): ${options.data.toString()}');
@@ -73,6 +73,7 @@ class HttpHelper {
         handler.next(e);
       },
       onError: (DioError e, ErrorInterceptorHandler handler) {
+        EasyLoading.dismiss();
         handler.next(e);
         debugPrint("***************************请求错误拦截*************************");
         if (e is DioError) {
@@ -90,13 +91,13 @@ class HttpHelper {
             EasyLoading.showToast("请求取消");
             break;
           case DioErrorType.connectTimeout:
-            EasyLoading.showToast("连接超时");
+            EasyLoading.showToast("连接超时,请稍后再试");
             break;
           case DioErrorType.receiveTimeout:
-            EasyLoading.showToast("响应超时");
+            EasyLoading.showToast("响应超时,请稍后再试");
             break;
           case DioErrorType.sendTimeout:
-            EasyLoading.showToast("请求超时");
+            EasyLoading.showToast("请求超时,请稍后再试");
             break;
           case DioErrorType.other:
             EasyLoading.showToast("请求失败: ${e.error.toString()}");
@@ -104,38 +105,38 @@ class HttpHelper {
           case DioErrorType.response:
             switch (e.response?.statusCode) {
               case 400:
-                EasyLoading.showToast("请求失败：${e.response!.data.toString()}");
+                EasyLoading.showToast("请求失败: ${e.response!.data.toString()}");
                break;
               case 401:
-                EasyLoading.showToast("请求失败：没有权限");
+                EasyLoading.showToast("请求失败: 没有权限");
                 break;
               case 403:
-                EasyLoading.showToast("请求失败：服务器拒绝执行");
+                EasyLoading.showToast("请求失败: 服务器拒绝执行");
                 break;
               case 404:
-                EasyLoading.showToast("请求失败：无法连接服务器 404");
+                EasyLoading.showToast("请求失败: 无法连接服务器");
                 break;
               case 405:
-                EasyLoading.showToast("请求失败：请求方法被禁止");
+                EasyLoading.showToast("请求失败: 请求方法被禁止");
                 break;
               case 500:
                 EasyLoading.showToast(e.response!.data.toString());
                 break;
               case 502:
-                EasyLoading.showToast("请求失败：无效的请求");
+                EasyLoading.showToast("请求失败: 无效的请求");
                 break;
               case 503:
-                EasyLoading.showToast("请求失败：服务器繁忙");
+                EasyLoading.showToast("请求失败: 服务器繁忙");
                 break;
               case 505:
-                EasyLoading.showToast("请求失败：不支持HTTP协议请求");
+                EasyLoading.showToast("请求失败: 不支持HTTP协议请求");
                 break;
               default:
-                EasyLoading.showToast("请求失败：请稍后再试 ${e.response!.data.toString()}");
+                EasyLoading.showToast("请求失败: 请稍后再试 ${e.response!.data.toString()}");
             }
             break;
           default:
-            EasyLoading.showToast("请求失败：请稍后再试");
+            EasyLoading.showToast("请求失败: 请稍后再试");
         }
       },
     ));
@@ -173,8 +174,10 @@ class HttpHelper {
     try {
       Response result = await _dio.request<dynamic>(url, queryParameters: params, data: data, options: options);
       if(result.statusCode == 200 ){
+        if(onSuccess!=null) onSuccess(result.data);
         return Future.value(result.data);
       }else{
+        if(onError!=null) onError(int.parse("${result.statusCode}"), "${result.statusMessage}");
         throw Exception("${result.statusMessage}");
       }
     } catch (e) {
