@@ -18,6 +18,7 @@ class _ApplicationState extends State<Application> {
   Widget build(BuildContext context) {
     // 使用 GetMaterialApp
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       // APP主题配色方案
       theme: AppInitialize.appTheme(),
       // 路由解决方案(也可自行配置)
