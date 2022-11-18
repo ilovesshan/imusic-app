@@ -41,7 +41,7 @@ class _MenuContainerState extends State<MenuContainer> {
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("晚上好", style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: Colors.white.withOpacity(0.5))),
+                Text(TimeUtil.getTextByDate(), style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w400, color: Colors.white.withOpacity(0.5))),
                 SizedBox(height: 4.h),
                 Text(SharedPreferencesDao.getUsername(),style: TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w700, color: Colors.white)),
               ],
