@@ -58,4 +58,18 @@ class TimeUtil {
     String secondStr = second < 10 ? ("0" + second.toString()) : second.toString();
     return "$year-$monthStr-$dayStr $hourStr:$minuteStr:$secondStr";
   }
+
+  /// 根据当前时间获取字符串[早上好、上午好、下午好、晚上好]
+  static String getTextByDate() {
+    var dateHours = DateTime.now().hour;
+    if (dateHours >= 0 && dateHours < 6) {
+      return "早上好";
+    } else if (dateHours >= 6 && dateHours < 12) {
+      return "上午好";
+    } else if (dateHours >= 12 && dateHours < 18) {
+      return "下午好";
+    } else {
+      return "晚上好";
+    }
+  }
 }
