@@ -31,7 +31,7 @@ class _SplashPageState extends State<SplashPage> {
     return SizedBox(
       width: Get.width,
       height: Get.height,
-      child: Image.asset("assets/images/splash.png", fit: BoxFit.fill),
+      child: Image.asset("assets/images/common/splash.png", fit: BoxFit.fill),
     );
   }
 }
