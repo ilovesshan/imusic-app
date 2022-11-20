@@ -24,16 +24,18 @@ class _LoginPageState extends State<LoginPage> with SingleTickerProviderStateMix
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: Get.width, height: Get.height, color: Get.theme.primaryColor, padding: EdgeInsets.only(top: 100.h),
+        width: Get.width, height: Get.height, color: Get.theme.primaryColor, padding: EdgeInsets.only(top: 126.h),
         child: Container(
-          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(20.r),topRight: Radius.circular(20.r))),
+          decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.only(topLeft: Radius.circular(15.r),topRight: Radius.circular(20.r))),
           child: Column(
             children: <Widget> [
               TabBar(
                 indicatorColor: Get.theme.primaryColor,
                 labelColor: Get.theme.primaryColor,
-                unselectedLabelColor: Colors.black,
+                unselectedLabelColor: const Color(0XFF7A869A),
                 controller: _tabController,
+                labelStyle: TextStyle(fontSize: 14.sp),
+                unselectedLabelStyle: TextStyle(fontSize: 14.sp),
                 tabs: const <Tab>[Tab(text: "登录"), Tab(text: "注册"),]
               ),
               Expanded(

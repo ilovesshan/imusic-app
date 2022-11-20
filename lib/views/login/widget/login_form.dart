@@ -25,22 +25,22 @@ class _LoginFormState extends State<LoginForm> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(height: 20.h),
-            Text("登录", style: TextStyle(fontSize: 22.sp, fontWeight: FontWeight.bold)),
+            Text("登录", style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold)),
 
             SizedBox(height: 5.h),
-            Text("嗨，您好！欢迎登录imusic", style: TextStyle(fontSize: 16.sp, color: const Color(0xFF7b7e88))),
+            Text("嗨，您好！欢迎登录imusic", style: TextStyle(fontSize: 14.sp, color: const Color(0xFF7A869A))),
 
             SizedBox(height: 30.h),
             TextField(controller: _usernameController, decoration: InputDecoration(labelText: "用户名/手机号", labelStyle: TextStyle(fontSize: 14.sp), hintText: "输入用户名/手机号")),
 
-            SizedBox(height: 10.h),
+            SizedBox(height: 25.h),
             TextField(controller: _passwordController, decoration: InputDecoration(labelText: "密码", labelStyle: TextStyle(fontSize: 14.sp), hintText: "输入登录密码"), obscureText: true),
 
-            SizedBox(height: 50.h),
+            SizedBox(height: 20.h),
             Text("忘记密码?", style: TextStyle(fontSize: 14.sp, color: Get.theme.primaryColor)),
 
-            const SizedBox(height: 80),
-            FractionallySizedBox(widthFactor: 1, child: ElevatedButton(child: const Text("登录"),
+            SizedBox(height: 25.h),
+            SizedBox(width: Get.width, height: 44.h, child: ElevatedButton(child: const Text("登录"),
                 onPressed: () async {
                   String username = _usernameController.text;
                   String password = _passwordController.text;
@@ -57,14 +57,15 @@ class _LoginFormState extends State<LoginForm> {
                   }
               )),
 
-            const SizedBox(height: 80),
+            SizedBox(height:103.h),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text("没有账号?", style: TextStyle(color: const Color(0xFF7A869A),fontSize: 14.sp),),
                 Text("立即注册", style: TextStyle(color: Get.theme.primaryColor, fontSize: 14.sp),)
               ],
-            )
+            ),
+            SizedBox(height: 84.h),
           ],
         ),
       ),
